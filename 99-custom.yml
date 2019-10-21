@@ -1,0 +1,25 @@
+---
+- include_vars: 00-vars.yml
+
+- name: '[CUSTOM] Remove tempory APT file list'
+  file:
+    path: /etc/apt/sources.list.d/dl_google_com_linux_chrome_deb.list
+    state: absent
+  
+- name: '[CUSTOM] Clone dotfiles'
+  git: 
+    repo: 'https://github.com/VPecquerie/dotfiles.git'
+    dest: '{{home}}/.dotfiles'
+
+- name: '[CUSTOM] Install dotfiles'
+  command: 'bash install.sh'
+  args:
+    chdir: '{{home}}/.dotfiles'
+
+- name: '[CUSTOM] Fix HomeDir permissions'
+  file: 
+    path: '{{home}}'
+    state: directory
+    owner: '{{username}}'
+    group: '{{username}}'
+    recurse: yes

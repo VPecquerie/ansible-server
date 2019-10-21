@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+   - include: 01-user.yml
+   - include: 02-apt.yml
+   - include: 03-binaries.yml
+   - include: 04-pip.yml
+   - include: 05-updates.yml
+   - include: 06-updates.yml
+   - include: 98-fonts.yml
+   - include: 99-custom.yml

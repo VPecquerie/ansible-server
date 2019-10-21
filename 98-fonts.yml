@@ -1,0 +1,14 @@
+---
+- include_vars: vars.yml
+- name: Git clone
+  git: >
+    repo=https://github.com/ryanoasis/nerd-fonts.git
+    dest=/tmp/nerd_fonts
+    depth=1
+
+- name: Install Fonts
+  command: chdir=/tmp/nerd_fonts bash install.sh -S
+
+- name: Clean
+  command: rm -rf /tmp/nerd_fonts
+

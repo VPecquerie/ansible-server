@@ -1,0 +1,49 @@
+user:
+  username: vpecquerie
+  display_name: Vincent PECQUERIE
+  homedir: /home/vpecquerie
+  uid: 1000
+  shell: /bin/zsh
+
+repositories:
+  docker:
+    repository: deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable
+    key_url: https://download.docker.com/linux/ubuntu/gpg
+
+packages:
+ - vim
+ - zsh
+ - python3
+ - python3-pip
+ - docker-ce
+ - glances
+ - htop
+ - openssh-server
+ - gnupg2
+ - sshfs
+ - rsync
+
+debs: {}
+
+pip: 
+ - archey4
+snaps: {}
+
+gems: 
+ - lolcat
+ - colorls
+ - catpix
+
+npms:
+ - fx
+ - dockly
+
+binaries:
+  docker_compose:
+    name: docker-compose
+    url: https://github.com/docker/compose/releases/download/1.22.0/docker-compose-Linux-x86_64
+    zsh_completion: https://raw.githubusercontent.com/docker/compose/1.22.0/contrib/completion/zsh/_docker-compose
+  docker_machine:
+    name: docker-machine
+    url: https://github.com/docker/machine/releases/download/v0.15.0/docker-machine-Linux-x86_64
+    zsh_completion: https://raw.githubusercontent.com/docker/machine/v0.15.0/contrib/completion/zsh/_docker-machine

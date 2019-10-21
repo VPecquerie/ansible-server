@@ -1,0 +1,23 @@
+---
+- include_vars: 00-vars.yml
+
+- name: '[APT] Request Signing Keys'
+  become: yes
+  apt_key: keyserver={{ item.value.keyserver }} id={{ item.value.key }}
+  with_dict: "{{ repositories }}"
+  when: item.value.key is defined
+
+- name: '[APT] Download Signing Keys'
+  become: yes
+  apt_key: url={{ item.value.key_url }} state=present
+  with_dict: "{{ repositories }}"
+  when: item.value.key_url is defined
+
+- name: '[APT] Add Repositories'
+  become: yes
+  apt_repository: repo={{ item.value.repository }}
+  with_dict: "{{ repositories }}"
+
+- name: '[APT] Install packages'
+  become: yes
+  apt: pkg={{ packages }} state=latest update_cache=true

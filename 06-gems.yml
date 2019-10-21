@@ -1,0 +1,8 @@
+---
+- include_vars: 00-vars.yml
+
+- name: '[GEMS] Install gems packages'
+  pip:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ gems }}"

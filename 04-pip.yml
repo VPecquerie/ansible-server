@@ -1,0 +1,7 @@
+---
+- include_vars: 00-vars.yml
+
+- name: '[PIP] Install PIP packages'
+  pip:
+    name: "{{ pip }}"
+    executable: pip3

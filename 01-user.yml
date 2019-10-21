@@ -1,0 +1,17 @@
+---
+- include_vars: 00-vars.yml
+
+- name: '[GROUP] Create docker group'
+  group:
+    name: docker
+    state: present
+
+- name: '[USER] Create account if not exist.'
+  user:
+    name: '{{ user.username }}'
+    comment: '{{ user.display_name }}'
+    home: '{{ user.homedir }}'
+    uid: '{{ user.uid }}'
+    groups: sudo,docker
+    append: yes
+    shell: '{{ user.shell }}'
